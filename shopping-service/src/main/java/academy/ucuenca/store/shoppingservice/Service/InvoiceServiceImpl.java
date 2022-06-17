@@ -1,13 +1,19 @@
 package academy.ucuenca.store.shoppingservice.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import academy.ucuenca.store.shoppingservice.Entity.Invoice;
+import academy.ucuenca.store.shoppingservice.Entity.InvoiceItem;
 import academy.ucuenca.store.shoppingservice.Repository.InvoiceItemsRepository;
 import academy.ucuenca.store.shoppingservice.Repository.InvoiceRepository;
+import academy.ucuenca.store.shoppingservice.client.CustomerClient;
+import academy.ucuenca.store.shoppingservice.client.ProductClient;
+import academy.ucuenca.store.shoppingservice.model.Customer;
+import academy.ucuenca.store.shoppingservice.model.Product;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,6 +25,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Autowired
     InvoiceItemsRepository invoiceItemsRepository;
+
+    @Autowired
+    CustomerClient customerClient;
+
+    @Autowired
+    ProductClient productClient;
 
     @Override
     public List<Invoice> findInvoiceAll() {
@@ -33,6 +45,12 @@ public class InvoiceServiceImpl implements InvoiceService {
             return  invoiceDB;
         }
         invoice.setState("CREATED");
+        invoiceDB=invoiceRepository.save(invoice);
+
+        invoiceDB.getItems().forEach(invoiceItem->{//actualizar el stock de cada producto despues de la venta
+            productClient.updateStock(invoiceItem.getProductId(), invoiceItem.getQuantity()*-1);
+        });
+
         return invoiceRepository.save(invoice);
     }
 
@@ -64,7 +82,19 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public Invoice getInvoice(Long id) {
-        return invoiceRepository.findById(id).orElse(null);
+
+        Invoice invoice=invoiceRepository.findById(id).orElse(null);
+        if(invoice!=null){
+            Customer customer=customerClient.getCustomer(invoice.getCustomerId()).getBody();
+            invoice.setCustomer(customer);
+            List<InvoiceItem> listItem=invoice.getItems().stream().map(item->{
+                Product product = productClient.getProduct(item.getProductId()).getBody();
+                item.setProduct(product);
+                return item;
+            }).collect(Collectors.toList());
+            invoice.setItems(listItem);
+        }
+        return invoice;
     }
 
    

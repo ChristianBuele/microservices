@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import academy.ucuenca.store.shoppingservice.model.Customer;
 import lombok.Data;
 
 @Data
@@ -43,6 +44,9 @@ public class Invoice {
     private List<InvoiceItem> items;
 
     private String state;
+
+    @Transient //para que no cuente como columna
+    private Customer customer;
 
     public Invoice(){
         items = new ArrayList<>();

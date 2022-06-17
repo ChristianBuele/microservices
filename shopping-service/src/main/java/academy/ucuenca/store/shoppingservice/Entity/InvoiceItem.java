@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Positive;
 
+import academy.ucuenca.store.shoppingservice.model.Product;
 import lombok.Data;
 
 @Entity
@@ -29,6 +30,9 @@ public class InvoiceItem  {
 
     @Transient
     private Double subTotal;
+
+    @Transient
+    private Product product;
 
 
     public Double getSubTotal(){
