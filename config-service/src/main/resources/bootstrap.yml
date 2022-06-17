@@ -5,5 +5,11 @@ spring:
         config:
             server:
                 git:
-                    uri: https://github.com/digitallab-academy/ms-course-youtube.git
+                    uri: https://github.com/ChristianBuele/microservices.git
                     searchPath: config-data
+                    username: ${GIT_USER}
+                    password: ${GIT_PASSWORD}
+    security:
+        user:
+            name: root
+            password: s3cr3t
