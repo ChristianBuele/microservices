@@ -19,6 +19,10 @@ spring:
         show_sql: false
         use_sql_comments: false
         format_sql: true
+    cloud:
+      loadbalancer:
+        ribbon:
+          enabled: false
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5P} %m%n"
