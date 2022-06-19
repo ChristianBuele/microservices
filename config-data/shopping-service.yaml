@@ -7,10 +7,6 @@ spring:
     spring.sql.init.platform: h2
     username: sa
     password:
-  cloud:
-    loadbalancer:
-        ribbon:
-          enabled: false
   jpa:
     show-sql: false
     defer-datasource-initialization: true
@@ -33,12 +29,23 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8099/eureka/
 
-Feign:
-  hystrix:
-    enabled: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
+resilience4j.circuitbreaker:
+    instances:
+        producCB:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 4
+            waitDurationInOpenState: 5s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+        customerCB:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 4
+            waitDurationInOpenState: 5s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
