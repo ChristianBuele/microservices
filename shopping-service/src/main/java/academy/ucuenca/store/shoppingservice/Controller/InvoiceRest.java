@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import academy.ucuenca.store.shoppingservice.Entity.Invoice;
 import academy.ucuenca.store.shoppingservice.Service.InvoiceService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -40,6 +41,7 @@ public class InvoiceRest {
     }
 
     // -------------------Retrieve Single Invoice------------------------------------------
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Invoice> getInvoice(@PathVariable("id") long id) {
         log.info("Fetching Invoice with id {}", id);
@@ -112,4 +114,6 @@ public class InvoiceRest {
         }
         return jsonString;
     }
+
+   
 }

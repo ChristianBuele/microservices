@@ -7,12 +7,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import academy.ucuenca.store.shoppingservice.model.Product;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @FeignClient(name = "product-service",path = "/products")
 public interface ProductClient {
+
+    @CircuitBreaker(name = "productCB",fallbackMethod = "getProductFallback")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id);
 
+    @CircuitBreaker(name = "productUpdateCB",fallbackMethod = "getProductFallback")
     @GetMapping(value = "/{id}/stock")
     public ResponseEntity<Product> updateStock(@PathVariable("id")Long id, @RequestParam(name="stock",required = true)Double stock);
+
+
+    default ResponseEntity<Product> getProductFallback(RuntimeException e ){
+        // Product product=Product.builder()
+        //         .id(0L)
+        //         .name("none")
+        //         .description("none")
+        //         .price(0.0)
+        //         .stock(0.0)
+        //         .build();
+        return ResponseEntity.ok(null);
+    }
+
 }
