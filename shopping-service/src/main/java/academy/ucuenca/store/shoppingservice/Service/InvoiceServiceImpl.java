@@ -14,7 +14,6 @@ import academy.ucuenca.store.shoppingservice.client.CustomerClient;
 import academy.ucuenca.store.shoppingservice.client.ProductClient;
 import academy.ucuenca.store.shoppingservice.model.Customer;
 import academy.ucuenca.store.shoppingservice.model.Product;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
