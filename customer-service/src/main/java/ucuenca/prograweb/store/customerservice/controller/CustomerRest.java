@@ -75,7 +75,7 @@ public class CustomerRest {
         if (result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
-
+        System.out.println("Llega el Customer: " + customer.toString());
        Customer customerDB = customerService.createCustomer (customer);
 
         return  ResponseEntity.status( HttpStatus.CREATED).body(customerDB);

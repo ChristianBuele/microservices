@@ -31,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer createCustomer(Customer customer) {
 
         Customer customerDB = customerRepository.findByNumberID ( customer.getNumberID () );
+        System.out.println("Encuentra el id del CustomerDB: " + customerDB);
         if (customerDB != null){
             return  customerDB;
         }

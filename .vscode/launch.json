@@ -1,0 +1,71 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch ServiceProductApplication",
+            "request": "launch",
+            "mainClass": "academy.digitallab.store.serviceproduct.ServiceProductApplication",
+            "projectName": "service-product"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigServiceApplication<config-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "academy.ucuenca.store.configservice.ConfigServiceApplication",
+            "projectName": "config-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RegistryServiceApplication<registry-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "academy.ucuenca.store.registryservice.RegistryServiceApplication",
+            "projectName": "registry-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-GatewayServiceApplication<gateway-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "academy.ucuenca.store.gatewayservice.GatewayServiceApplication",
+            "projectName": "gateway-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ShoppingServiceApplication<shopping-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "academy.ucuenca.store.shoppingservice.ShoppingServiceApplication",
+            "projectName": "shopping-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CustomerServiceApplication<customer-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "ucuenca.prograweb.store.customerservice.CustomerServiceApplication",
+            "projectName": "customer-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AdminServiceApplication<admin-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "academy.ucuenca.store.adminservice.AdminServiceApplication",
+            "projectName": "admin-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
