@@ -21,7 +21,9 @@ spring:
         show_sql: false
         use_sql_comments: false
         format_sql: true
-    
+Feign:
+  hystrix:
+    enabled: true   
       
 logging:
   pattern:
