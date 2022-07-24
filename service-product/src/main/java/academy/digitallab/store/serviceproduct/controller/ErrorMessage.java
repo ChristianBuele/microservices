@@ -11,6 +11,4 @@ import lombok.Setter;
 public class ErrorMessage {
     private String code;
     private List<Map<String,String>> messages;
-
-    
 }
