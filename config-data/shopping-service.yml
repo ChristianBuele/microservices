@@ -29,7 +29,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: https://registrymicroservice.herokuapp.com/eureka/
+      defaultZone: http://localhost:8099/eureka/
 
 resilience4j.circuitbreaker:
     instances:
